@@ -49,7 +49,8 @@ int main(){
             }
             pop();
         } else {
-            while(top != -1 && prec(stack[top]) >= prec(ch) && !RightAssociative(ch)){
+            while(top != -1 && (prec(stack[top]) > prec(ch) || 
+                                (prec(stack[top]) == prec(ch) && !RightAssociative(ch)))){
                 postfix[j++] = pop();
             }
             push(ch);
