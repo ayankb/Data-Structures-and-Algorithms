@@ -1,11 +1,13 @@
 #include<stdio.h>
 #include<ctype.h>
 #include<string.h>
+#include<stdlib.h>
+#include<math.h>
 
 int stack[100];
 int top = -1;
 
-void push(char ch){
+void push(int ch){
     stack[++top] = ch;
 }
 
@@ -14,20 +16,24 @@ int pop(){
 }
 
 int main(){
-    char exp[100];
-    char ch;
+    char postfix[100];
+    char *token;
     int i=0, op1, op2, result;
-    printf("Enter postfix expr:\n");
-    scanf("%s", exp);
-    int len = strlen(exp);
-    while(exp[i] != '\0'){
-        ch = exp[i];
-        if(isalnum(ch)) {
-            push(ch - '0');
+    printf("Enter postfix expression (comma separated):\n");
+    fgets(postfix, sizeof(postfix), stdin);
+
+    postfix[strcspn(postfix, "\n")] = '\0';
+
+    token = strtok(postfix, ",");
+
+    while(token != NULL){
+        
+        if(isdigit(token[0])) {
+            push(atoi(token));
         } else{
             op2 = pop();
             op1 = pop();
-            switch (ch)
+            switch (token[0])
             {
             case '+':
                 result = op1 + op2;
@@ -42,13 +48,13 @@ int main(){
                 result = op1 / op2;
                 break;
             case '^':
-                result = op1 ^ op2;
+                result = pow(op1, op2);
             default:
                 break;
             }
             push(result);
         }
-        i++;
+        token = strtok(NULL, ",");
     }
 
     printf("Result: %d", stack[top]);
