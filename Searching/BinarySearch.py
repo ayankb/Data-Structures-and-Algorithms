@@ -13,9 +13,9 @@ def binary_search(arr, key):
 
 arr = list(map(int, input().split()))
 if(sorted(arr) != arr):
-    print("Array is not soreted. Please enter a sorted array.")
+    print("Array is not sorted. Please enter a sorted array.")
 else:
-    key = int(input("Enter the element to be secarch: "))
+    key = int(input("Enter the element to be searched: "))
     result = binary_search(arr, key)
 
     if result == -1:

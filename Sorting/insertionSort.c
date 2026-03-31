@@ -1,5 +1,8 @@
-///insertion sort
-//time complexity = O(n^2)
+// Time Complexity
+// Best case: O(n) (already sorted)
+// Worst case: O(n²)
+// Average case: O(n²)
+
 #include<stdio.h>
 int main(){
     int n;
@@ -10,17 +13,17 @@ int main(){
     for(int i=0;i<n;i++){
         scanf("%d",&arr[i]);
     }
-    
-    for(int i=1;i<n;i++){
-        int item = arr[i];
-        int j=i-1;
-        while(j>=0 && arr[j]>item){
-            arr[j+1]=arr[j];
+
+    for(int i=1; i<n; i++){
+        int tepm = arr[i];
+        int j = i-1;
+        while(j >= 0 && arr[j] > tepm){
+            arr[j+1] = arr[j];
             j--;
         }
-        // placement
-        arr[j+1]=item;
+        arr[j+1] = tepm;
     }
+    
     printf("The sorted array is:\n");
     for(int i=0;i<n;i++){
         printf("%d ",arr[i]);

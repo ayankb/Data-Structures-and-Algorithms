@@ -1,32 +1,39 @@
+// Time Complexity
+// Best case: O(n) (already sorted)
+// Worst case: O(n²)
+// Average case: O(n²)
+
 #include<stdio.h>
+
 int main(){
-    int n, i;
-   printf("Enter the size of array:\n");
+    int n;
+    printf("Enter the size of array:\n");
     scanf("%d",&n);
+    printf("Enter the elements of array:\n");
     int arr[n];
-   printf("Enter the elements of array:\n");
-    for( i=0;i<n;i++)
-    {
+    for(int i=0; i<n; i++){
         scanf("%d",&arr[i]);
     }
-    
-    int count = 1;
-    while(count <= n)
-    {
-        for( i=0;i<=n-count;i++)
-        {
-            if(arr[i] > arr[i+1])
-            {
-                int temp = arr[i];
-                arr[i] = arr[i+1];
-                arr[i+1] = temp;
+
+    for(int i=0; i<n-1; i++){
+        int flag = 0;
+        for(int j=0; j<n-1-i; j++){
+            if(arr[j] > arr[j+1]){
+                int temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+                flag = 1;
             }
         }
-        count ++;
+        if(flag == 0){
+            break;
+        }
     }
-    printf("The sorted array is:\n");
-    for( i=0;i<n;i++){
+
+    printf("The sorted array is :\n");
+    for(int i=0; i<n; i++){
         printf("%d ",arr[i]);
     }
+
     return 0;
 }
